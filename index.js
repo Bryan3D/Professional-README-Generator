@@ -1,15 +1,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const { default: Choice } = require('inquirer/lib/objects/choice');
 
 const generateMarkdown = ({ name, description, tableOf, hyperLink }) => `
 # ${YourProjectTitle}
 ---
-
+## Table of Contents
+---
+    -${tableOf}
+    
 ## Project Description
 ---
 
-## Table of Contents
----
 
 
 ## Website project link
@@ -25,18 +27,20 @@ inquirer.prompt([
             type: 'input'
         },
         {
-            description:'projDescription',
+            desc:'description',
             message: 'Description of the project',
             type:'input'
         },
         {
             tableOf:'contents',
-            message: 'Table of Contents',
-            type:'input'
+            message: 'Table of Contents of your project',
+            type:'checkbox',
+            choices:['description','Installation','Usage', 'Credits','License'],
+
         },
         {
             hyperLink:'webSite',
-            message: 'Type the website link of the project',
+            message: 'Input your website link project',
             type:'input'
         },
 
